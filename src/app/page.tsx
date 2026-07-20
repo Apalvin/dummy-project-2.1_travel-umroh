@@ -91,7 +91,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/85 via-[#1E3A8A]/60 to-[#FAFAF9] z-0"></div>
         </div>
 
-        <FadeIn className="container relative z-10 mx-auto px-4 text-center mt-16">
+        <FadeIn className="container relative z-10 mx-auto px-4 text-center mt-16 pb-16 md:pb-24">
           <div className="inline-flex items-center justify-center gap-3 mb-6">
             <span className="w-4 h-[2px] bg-[#F97316] md:w-6"></span>
             <span className="text-[#F97316] font-bold text-xs md:text-sm tracking-widest uppercase" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}>
