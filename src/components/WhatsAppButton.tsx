@@ -6,19 +6,21 @@ export default function WhatsAppButton() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Show after 2 seconds
-    const showTimer = setTimeout(() => {
+    let interval: NodeJS.Timeout;
+    
+    // Initial delay before first show
+    const initialTimer = setTimeout(() => {
       setShowPopup(true);
+      
+      // Then toggle every 10 seconds
+      interval = setInterval(() => {
+        setShowPopup((prev) => !prev);
+      }, 10000);
     }, 2000);
 
-    // Hide after 7 seconds (2s delay + 5s visible)
-    const hideTimer = setTimeout(() => {
-      setShowPopup(false);
-    }, 7000);
-
     return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
+      clearTimeout(initialTimer);
+      if (interval) clearInterval(interval);
     };
   }, []);
 
