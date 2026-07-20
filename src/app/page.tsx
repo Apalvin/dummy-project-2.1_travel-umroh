@@ -93,16 +93,16 @@ export default function Home() {
 
         <FadeIn className="container relative z-10 mx-auto px-4 text-center mt-16">
           <div className="inline-flex items-center justify-center gap-3 mb-6">
-            <span className="w-6 h-[2px] bg-[#F97316]"></span>
-            <span className="text-[#F97316] font-bold text-sm tracking-widest uppercase" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}>
+            <span className="w-4 h-[2px] bg-[#F97316] md:w-6"></span>
+            <span className="text-[#F97316] font-bold text-xs md:text-sm tracking-widest uppercase" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}>
               Travel Umroh & Haji Premium 2026
             </span>
-            <span className="w-6 h-[2px] bg-[#F97316]"></span>
+            <span className="w-4 h-[2px] bg-[#F97316] md:w-6"></span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 md:mb-6 leading-tight">
             Perjalanan Suci <br className="hidden md:block"/> Nyaman & Bintang 5
           </h1>
-          <p className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-medium" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 mb-8 md:mb-10 max-w-2xl mx-auto font-medium leading-relaxed" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
             Wujudkan niat suci Anda bersama Al-Iqro Travel. Kami menghadirkan fasilitas eksklusif dan pembimbing tersertifikasi untuk ibadah yang khusyuk dan mabrur.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
