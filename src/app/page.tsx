@@ -123,7 +123,7 @@ export default function Home() {
       </section>
 
       {/* Floating Search/Filter Bar */}
-      <section className="relative z-20 -mt-16 md:-mt-24 container mx-auto px-4 mb-24">
+      <FadeIn delay={0.2} className="relative z-20 -mt-16 md:-mt-24 container mx-auto px-4 mb-24">
         <div className="bg-white rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] p-4 md:p-6 flex flex-col lg:flex-row gap-4 items-end border border-white/50 backdrop-blur-xl">
           <div className="w-full lg:w-1/3">
             <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 ml-1">Kategori Perjalanan</label>
@@ -168,7 +168,7 @@ export default function Home() {
             <Search className="w-5 h-5" /> Cari
           </button>
         </div>
-      </section>
+      </FadeIn>
 
       {/* 2. Layanan Utama Kami */}
       <section className="py-12 bg-white">
