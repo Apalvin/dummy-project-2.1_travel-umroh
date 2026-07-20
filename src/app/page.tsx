@@ -91,7 +91,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/85 via-[#1E3A8A]/60 to-[#FAFAF9] z-0"></div>
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 text-center mt-16">
+        <FadeIn className="container relative z-10 mx-auto px-4 text-center mt-16">
           <div className="inline-flex items-center justify-center gap-3 mb-6">
             <span className="w-6 h-[2px] bg-[#F97316]"></span>
             <span className="text-[#F97316] font-bold text-sm tracking-widest uppercase" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}>
@@ -119,7 +119,7 @@ export default function Home() {
               Konsultasi Gratis <PlayCircle className="w-5 h-5" />
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Floating Search/Filter Bar */}
