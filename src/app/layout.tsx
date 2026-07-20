@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} antialiased h-full`}>
+    <html lang="id" className={`${inter.variable} antialiased h-full bg-[#1E3A8A]`}>
       <body className="flex flex-col min-h-screen bg-[#FAFAF9] text-gray-800">
         <Navbar />
         <main className="flex-grow">
