@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 
 export const revalidate = 0; // Ensure data is always fresh
 
@@ -12,15 +13,15 @@ export default async function Artikel() {
   return (
     <div className="bg-[#FAFAF9] min-h-screen pt-28 pb-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-16">
           <span className="text-[#F97316] font-bold tracking-wider uppercase text-sm block mb-2">Pusat Edukasi</span>
           <h1 className="text-4xl md:text-5xl font-bold text-[#1E3A8A] mb-4">Artikel & Panduan Ibadah</h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Temukan berbagai panduan, tips, dan informasi penting seputar ibadah umroh, haji, dan wisata halal.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <FadeIn delay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {(!articles || articles.length === 0) ? (
             <div className="col-span-full text-center py-20 text-gray-500 border-2 border-dashed border-gray-200 rounded-2xl">
               Belum ada artikel yang dipublikasikan.
@@ -57,7 +58,7 @@ export default async function Artikel() {
               </Link>
             ))
           )}
-        </div>
+        </FadeIn>
       </div>
     </div>
   );

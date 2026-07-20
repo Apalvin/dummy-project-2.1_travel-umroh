@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import PackageCard from "@/components/PackageCard";
 import { Search, MapPin } from "lucide-react";
+import FadeIn from "@/components/FadeIn";
 import { useSearchParams, useRouter } from "next/navigation";
 
 interface TravelPackage {
@@ -100,7 +101,7 @@ function PaketContent() {
     <div className="pt-28 pb-20 min-h-screen bg-[#FAFAF9]">
       <div className="container mx-auto px-4">
         {/* Header Section */}
-        <div className="bg-[#1E3A8A] rounded-3xl p-8 md:p-12 text-white mb-12 shadow-xl relative overflow-hidden">
+        <FadeIn className="bg-[#1E3A8A] rounded-3xl p-8 md:p-12 text-white mb-12 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#F97316]/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4"></div>
           
@@ -110,10 +111,10 @@ function PaketContent() {
               Temukan paket Umroh, Haji, dan Wisata Halal terbaik yang sesuai dengan kebutuhan dan rencana perjalanan ibadah Anda.
             </p>
           </div>
-        </div>
+        </FadeIn>
 
         {/* Filter Section */}
-        <div className="bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] p-6 mb-12 flex flex-col lg:flex-row gap-4 items-end border border-gray-100">
+        <FadeIn delay={0.1} className="bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] p-6 mb-12 flex flex-col lg:flex-row gap-4 items-end border border-gray-100">
           <div className="w-full lg:w-1/4">
             <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 ml-1">Kategori Perjalanan</label>
             <div className="relative group">
@@ -177,10 +178,11 @@ function PaketContent() {
               />
             </div>
           </div>
-        </div>
+        </FadeIn>
 
         {/* Packages Grid */}
-        <div className="mb-8 flex justify-between items-center">
+        <FadeIn delay={0.2}>
+          <div className="mb-8 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-gray-800">
             {kategori === "Semua Kategori" ? "Semua Paket" : `Paket ${kategori}`}
           </h2>
@@ -208,6 +210,7 @@ function PaketContent() {
             <p className="text-gray-500">Silakan ubah filter pencarian Anda untuk melihat paket lainnya.</p>
           </div>
         )}
+        </FadeIn>
       </div>
     </div>
   );

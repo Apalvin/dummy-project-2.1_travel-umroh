@@ -6,6 +6,7 @@ import PackageCard from "@/components/PackageCard";
 import { Search, MapPin, Star, Award, ShieldCheck, PlayCircle, PlaneTakeoff, HeartHandshake, Camera, Video, MessageSquare, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import FadeIn from "@/components/FadeIn";
 
 interface TravelPackage {
   id: string;
@@ -171,7 +172,7 @@ export default function Home() {
 
       {/* 2. Layanan Utama Kami */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-[#F97316] font-bold tracking-wider uppercase text-sm">Pelayanan Terbaik</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] mt-2">Layanan Utama Kami</h2>
@@ -194,12 +195,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 3. Banner Promo Khusus */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="relative rounded-[2rem] overflow-hidden shadow-2xl group">
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors z-10"></div>
             <img 
@@ -218,12 +219,12 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 4. Program Khusus / Private Umroh */}
       <section className="py-20 bg-[#FAFAF9] overflow-hidden">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="w-full lg:w-1/2 relative">
               <div className="absolute -inset-4 bg-[#F97316]/10 rounded-3xl transform -rotate-3"></div>
@@ -269,12 +270,12 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 5. Paket Rekomendasi (Ditingkatkan) */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
               <span className="text-[#F97316] font-bold tracking-wider uppercase text-sm block mb-2">Pilihan Terfavorit</span>
@@ -307,7 +308,7 @@ export default function Home() {
               Lihat Semua Paket
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 6. Informasi Syarat & Panduan Ibadah */}
@@ -315,7 +316,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#F97316]/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <FadeIn className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Informasi & Panduan Ibadah</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">Bekali diri Anda dengan ilmu manasik dan informasi persyaratan agar ibadah berjalan lancar.</p>
@@ -343,12 +344,12 @@ export default function Home() {
               ))
             )}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 7. Testimoni / Apa Kata Jamaah */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-[#F97316] font-bold tracking-wider uppercase text-sm">Alhamdulillah</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] mt-2">Apa Kata Jamaah Kami</h2>
@@ -374,12 +375,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 8. FAQ & Social Media Hub */}
       <section className="py-20 bg-[#FAFAF9] border-t border-gray-100">
-        <div className="container mx-auto px-4">
+        <FadeIn className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* FAQ */}
             <div>
@@ -424,12 +425,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* 9. Partner Kami (Logos) */}
       <section className="py-12 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-4 text-center">
+        <FadeIn className="container mx-auto px-4 text-center">
           <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Bekerja Sama Dengan Maskapai & Fasilitas Terbaik</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
             {/* Using bold text as placeholder for logos */}
@@ -439,7 +440,7 @@ export default function Home() {
             <span className="text-2xl font-black text-purple-900">QATAR AIRWAYS</span>
             <span className="text-2xl font-black text-yellow-600">PULLMAN ZAMZAM</span>
           </div>
-        </div>
+        </FadeIn>
       </section>
     </div>
   );

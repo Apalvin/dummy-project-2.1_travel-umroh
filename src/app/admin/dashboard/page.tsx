@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { logout } from "@/app/actions/auth";
-import { addPackage, deletePackage } from "@/app/actions/packages";
-import { addArticle, deleteArticle } from "@/app/actions/articles";
+import { addPackage, deletePackage, updatePackage } from "@/app/actions/packages";
+import { addArticle, deleteArticle, updateArticle } from "@/app/actions/articles";
 
 interface TravelPackage {
   id: string;
@@ -38,6 +38,9 @@ export default function AdminDashboard() {
   const [isPackageModalOpen, setIsPackageModalOpen] = useState(false);
   const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [editingPackageId, setEditingPackageId] = useState<string | null>(null);
+  const [editingArticleId, setEditingArticleId] = useState<string | null>(null);
 
   const [packageFormData, setPackageFormData] = useState({
     title: "",
@@ -113,6 +116,34 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleEditPackageClick = (pkg: TravelPackage) => {
+    setEditingPackageId(pkg.id);
+    setPackageFormData({
+      title: pkg.title,
+      category: pkg.category,
+      price_idr: pkg.price_idr.toString(),
+      duration_days: pkg.duration_days.toString(),
+      airline: pkg.airline || "",
+      hotel_makkah_rating: pkg.hotel_makkah_rating ? pkg.hotel_makkah_rating.toString() : "",
+      hotel_madinah_rating: pkg.hotel_madinah_rating ? pkg.hotel_madinah_rating.toString() : "",
+      muthawwif_name: pkg.muthawwif_name || "",
+      departure_month: pkg.departure_month || "",
+      image_url: pkg.image_url || "",
+    });
+    setIsPackageModalOpen(true);
+  };
+
+  const handleEditArticleClick = (art: Article) => {
+    setEditingArticleId(art.id);
+    setArticleFormData({
+      title: art.title,
+      description: art.description,
+      image_url: art.image_url,
+      content: (art as any).content || "", // Include content if fetched
+    });
+    setIsArticleModalOpen(true);
+  };
+
   const handlePackageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -129,14 +160,21 @@ export default function AdminDashboard() {
       image_url: packageFormData.image_url || null,
     };
 
-    const result = await addPackage(newPackage);
+    let result;
+    if (editingPackageId) {
+      result = await updatePackage(editingPackageId, newPackage);
+    } else {
+      result = await addPackage(newPackage);
+    }
+    
     setIsSubmitting(false);
 
     if (!result.success) {
-      alert("Gagal menambahkan paket: " + result.error);
+      alert(`Gagal ${editingPackageId ? 'menyimpan' : 'menambahkan'} paket: ` + result.error);
     } else {
-      alert("Paket berhasil ditambahkan!");
+      alert(`Paket berhasil ${editingPackageId ? 'disimpan' : 'ditambahkan'}!`);
       setIsPackageModalOpen(false);
+      setEditingPackageId(null);
       setPackageFormData({
         title: "", category: "Umroh", price_idr: "", duration_days: "", airline: "",
         hotel_makkah_rating: "", hotel_madinah_rating: "", muthawwif_name: "",
@@ -150,14 +188,21 @@ export default function AdminDashboard() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const result = await addArticle(articleFormData);
+    let result;
+    if (editingArticleId) {
+      result = await updateArticle(editingArticleId, articleFormData);
+    } else {
+      result = await addArticle(articleFormData);
+    }
+    
     setIsSubmitting(false);
 
     if (!result.success) {
-      alert("Gagal menambahkan artikel: " + result.error);
+      alert(`Gagal ${editingArticleId ? 'menyimpan' : 'menambahkan'} artikel: ` + result.error);
     } else {
-      alert("Artikel berhasil ditambahkan!");
+      alert(`Artikel berhasil ${editingArticleId ? 'disimpan' : 'ditambahkan'}!`);
       setIsArticleModalOpen(false);
+      setEditingArticleId(null);
       setArticleFormData({ title: "", description: "", image_url: "", content: "" });
       fetchData();
     }
@@ -178,11 +223,23 @@ export default function AdminDashboard() {
             Logout
           </button>
           {activeTab === "paket" ? (
-            <button onClick={() => setIsPackageModalOpen(true)} className="bg-[#F97316] hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-medium shadow-md transition-colors whitespace-nowrap">
+            <button onClick={() => {
+              setEditingPackageId(null);
+              setPackageFormData({
+                title: "", category: "Umroh", price_idr: "", duration_days: "", airline: "",
+                hotel_makkah_rating: "", hotel_madinah_rating: "", muthawwif_name: "",
+                departure_month: "", image_url: "",
+              });
+              setIsPackageModalOpen(true);
+            }} className="bg-[#F97316] hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-medium shadow-md transition-colors whitespace-nowrap">
               + Tambah Paket
             </button>
           ) : (
-            <button onClick={() => setIsArticleModalOpen(true)} className="bg-[#1E3A8A] hover:bg-blue-900 text-white px-5 py-2.5 rounded-xl font-medium shadow-md transition-colors whitespace-nowrap">
+            <button onClick={() => {
+              setEditingArticleId(null);
+              setArticleFormData({ title: "", description: "", image_url: "", content: "" });
+              setIsArticleModalOpen(true);
+            }} className="bg-[#1E3A8A] hover:bg-blue-900 text-white px-5 py-2.5 rounded-xl font-medium shadow-md transition-colors whitespace-nowrap">
               + Tambah Artikel
             </button>
           )}
@@ -246,7 +303,7 @@ export default function AdminDashboard() {
                       </td>
                       <td className="p-4 text-sm text-gray-600">{pkg.departure_month || "-"}</td>
                       <td className="p-4">
-                        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
+                        <button onClick={() => handleEditPackageClick(pkg)} className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
                         <button onClick={() => handlePackageDelete(pkg.id, pkg.title)} className="text-red-500 hover:text-red-700 text-sm font-medium">Hapus</button>
                       </td>
                     </tr>
@@ -278,7 +335,7 @@ export default function AdminDashboard() {
                       <td className="p-4 text-sm text-gray-600">{art.description}</td>
                       <td className="p-4 text-sm text-gray-600">{new Date(art.created_at).toLocaleDateString("id-ID")}</td>
                       <td className="p-4">
-                        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
+                        <button onClick={() => handleEditArticleClick(art)} className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
                         <button onClick={() => handleArticleDelete(art.id, art.title)} className="text-red-500 hover:text-red-700 text-sm font-medium">Hapus</button>
                       </td>
                     </tr>
@@ -295,7 +352,7 @@ export default function AdminDashboard() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[60] overflow-y-auto">
           <div className="bg-white rounded-2xl w-full max-w-2xl shadow-xl my-8">
             <div className="flex justify-between items-center p-6 border-b">
-              <h2 className="text-xl font-bold text-[#1E3A8A]">Tambah Paket Baru</h2>
+              <h2 className="text-xl font-bold text-[#1E3A8A]">{editingPackageId ? "Edit Paket" : "Tambah Paket Baru"}</h2>
               <button onClick={() => setIsPackageModalOpen(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
             </div>
             <form onSubmit={handlePackageSubmit} className="p-6">
@@ -362,7 +419,7 @@ export default function AdminDashboard() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[60] overflow-y-auto">
           <div className="bg-white rounded-2xl w-full max-w-lg shadow-xl my-8">
             <div className="flex justify-between items-center p-6 border-b">
-              <h2 className="text-xl font-bold text-[#1E3A8A]">Tambah Artikel Baru</h2>
+              <h2 className="text-xl font-bold text-[#1E3A8A]">{editingArticleId ? "Edit Artikel" : "Tambah Artikel Baru"}</h2>
               <button onClick={() => setIsArticleModalOpen(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
             </div>
             <form onSubmit={handleArticleSubmit} className="p-6">

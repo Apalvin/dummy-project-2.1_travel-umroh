@@ -69,3 +69,30 @@ export async function deletePackage(id: string) {
     return { success: false, error: err.message || "Terjadi kesalahan sistem" };
   }
 }
+
+export async function updatePackage(id: string, packageData: any) {
+  try {
+    await checkAuth();
+
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return { success: false, error: "SUPABASE_SERVICE_ROLE_KEY belum diset di .env.local" };
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from("travel_packages")
+      .update(packageData)
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      console.error("Supabase update error:", error);
+      return { success: false, error: error.message };
+    }
+
+    revalidatePath("/admin/dashboard");
+    revalidatePath("/paket");
+    return { success: true, data };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Terjadi kesalahan sistem" };
+  }
+}

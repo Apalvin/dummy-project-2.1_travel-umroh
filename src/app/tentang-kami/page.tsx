@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ShieldCheck, Award, Users, HeartHandshake, MapPin, Plane } from "lucide-react";
+import FadeIn from "@/components/FadeIn";
 
 export default function TentangKami() {
   return (
@@ -17,7 +18,7 @@ export default function TentangKami() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/85 via-[#1E3A8A]/60 to-[#FAFAF9] z-0"></div>
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 text-center mt-16">
+        <FadeIn className="container relative z-10 mx-auto px-4 text-center mt-16">
           <div className="inline-flex items-center justify-center gap-3 mb-6">
             <span className="w-6 h-[2px] bg-[#F97316]"></span>
             <span className="text-[#F97316] font-bold text-sm tracking-widest uppercase" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}>
@@ -31,12 +32,12 @@ export default function TentangKami() {
           <p className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-medium" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
             Al-Iqro Travel berkomitmen menjadi jembatan terbaik bagi perjalanan ibadah suci Anda, dengan layanan premium dan bimbingan ibadah yang sesuai sunnah.
           </p>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Sejarah & Dedikasi */}
       <section className="py-24 bg-white relative">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <FadeIn className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="w-full lg:w-1/2 relative">
               <div className="absolute -inset-4 bg-[#1E3A8A]/5 rounded-3xl transform -rotate-2"></div>
@@ -77,12 +78,12 @@ export default function TentangKami() {
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Visi Misi */}
       <section className="py-24 bg-[#1E3A8A] text-white">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <FadeIn className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Visi & Misi Kami</h2>
             <div className="w-24 h-1.5 bg-[#F97316] mx-auto rounded-full"></div>
@@ -104,12 +105,12 @@ export default function TentangKami() {
               </ul>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Keunggulan */}
       <section className="py-24 bg-[#FAFAF9]">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <FadeIn className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-20">
             <h2 className="text-sm font-bold text-[#F97316] tracking-widest uppercase mb-3">Keunggulan Kami</h2>
             <h3 className="text-3xl md:text-5xl font-extrabold text-[#1E3A8A]">Mengapa Memilih Al-Iqro?</h3>
@@ -133,12 +134,12 @@ export default function TentangKami() {
               </div>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Legalitas */}
       <section className="py-20 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
+        <FadeIn className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-2xl font-bold text-[#1E3A8A] mb-10">Legalitas & Sertifikasi</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-12">
             <div className="text-left">
@@ -156,18 +157,18 @@ export default function TentangKami() {
             <span className="text-xl font-black">ASITA</span>
             <span className="text-xl font-black">IATA</span>
           </div>
-        </div>
+        </FadeIn>
       </section>
       
       {/* CTA */}
       <section className="py-20 bg-[#FAFAF9]">
-        <div className="container mx-auto px-4 text-center">
+        <FadeIn className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-[#1E3A8A] mb-6">Siap Merencanakan Perjalanan Suci Anda?</h2>
           <p className="text-gray-600 mb-10 max-w-xl mx-auto">Tim konsultan kami siap membantu Anda memilih paket yang paling sesuai dengan kebutuhan dan anggaran Anda.</p>
           <Link href="/kontak" className="inline-block bg-[#F97316] hover:bg-orange-600 text-white px-10 py-4 rounded-xl font-bold shadow-xl hover:-translate-y-1 transition-all text-lg">
             Hubungi Konsultan Kami
           </Link>
-        </div>
+        </FadeIn>
       </section>
     </div>
   );

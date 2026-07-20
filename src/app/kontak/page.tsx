@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
+import FadeIn from "@/components/FadeIn";
 
 export default function KontakPage() {
   const [nama, setNama] = useState("");
@@ -37,14 +38,14 @@ export default function KontakPage() {
     <div className="pt-28 pb-20 min-h-screen bg-[#FAFAF9]">
       <div className="container mx-auto px-4">
         
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <FadeIn className="text-center max-w-2xl mx-auto mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-[#1E3A8A] mb-4">Hubungi Kami</h1>
           <p className="text-gray-600 text-lg">
             Ada pertanyaan tentang paket Umroh, Haji, atau Wisata Halal? Tim kami siap membantu Anda dengan layanan responsif.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+        <FadeIn delay={0.2} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="bg-[#1E3A8A] rounded-3xl p-10 text-white shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
@@ -176,7 +177,7 @@ export default function KontakPage() {
               </button>
             </form>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </div>
   );

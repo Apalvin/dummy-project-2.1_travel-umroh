@@ -73,3 +73,36 @@ export async function deleteArticle(id: string) {
     return { success: false, error: err.message || "Terjadi kesalahan sistem" };
   }
 }
+
+export async function updateArticle(id: string, articleData: any) {
+  try {
+    await checkAuth();
+
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return { success: false, error: "SUPABASE_SERVICE_ROLE_KEY belum diset di .env.local" };
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from("articles")
+      .update({
+        title: articleData.title,
+        description: articleData.description,
+        image_url: articleData.image_url,
+        content: articleData.content,
+      })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      console.error("Supabase update error (articles):", error);
+      return { success: false, error: error.message };
+    }
+
+    revalidatePath("/admin/dashboard");
+    revalidatePath("/artikel");
+    revalidatePath("/");
+    return { success: true, data };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Terjadi kesalahan sistem" };
+  }
+}
