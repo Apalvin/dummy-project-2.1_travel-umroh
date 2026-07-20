@@ -36,6 +36,8 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-[#FAFAF9] text-gray-800">
         <Navbar />
         <main className="flex-grow">
+          {children}
+        </main>
         <Footer />
         <WhatsAppButton />
       </body>
